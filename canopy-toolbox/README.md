@@ -149,4 +149,4 @@ assuming a failure is a logic bug. First run should be on a single small tile.
 
 ## Licence
 
-Inherits the parent repository's licence.
+Inherits the parent repository’s licence (MIT).
