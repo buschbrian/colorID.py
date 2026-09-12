@@ -1,12 +1,14 @@
 # agol-python-scripts
 
-Small, standalone Python utilities for ArcGIS Online and ArcGIS Pro. Each
-script is self-contained; there is no package to install.
+Python utilities for ArcGIS Online and ArcGIS Pro. The scripts at the root
+are self-contained single files with nothing to install; larger tools that
+need more than one file live in their own folder.
 
 | Script | What it does | Runs with |
 |---|---|---|
 | `assign_polygon_colors.py` | Assigns a `colorID` to polygons so no two adjacent polygons share a value (greedy graph coloring over a Polygon Neighbors table) — for cartography where touching parcels or zones need distinct fills. Set the two path variables at the top before running. | ArcGIS Pro's Python (`arcpy`) |
 | `add_badelf_fields_to_agol.py` | Adds the Bad Elf Flex (2025) GNSS metadata fields and coded-value domains to a hosted feature layer, so surveyed points keep correction type, geoid model, antenna height, and final heights. Idempotent — existing fields are skipped. | ArcGIS API for Python (`arcgis`) |
+| [`canopy-toolbox/`](canopy-toolbox/) | ArcGIS Pro Python toolbox (`CanopyTools.pyt`) turning a classified lidar point cloud into canopy cover and an individual-tree layer — vegetation-only CHM, height-banded treetop detection, watershed crown delineation, zonal cover rollup. Five tools; see its own README for accuracy caveats. | ArcGIS Pro Advanced + 3D and Spatial Analyst |
 
 ## Environment
 
@@ -24,7 +26,18 @@ The password is prompted for. Use `--layer N` when the item has more than one
 sublayer. `--password` exists for automation only — prefer the prompt so the
 password never lands in shell history.
 
+## Folders
+
+`canopy-toolbox/` is a multi-file ArcGIS Pro toolbox rather than a script.
+Its band and tiling logic is deliberately free of `arcpy` so it can be
+unit-tested off a Pro machine:
+
+```bash
+cd canopy-toolbox && python3 -m unittest discover -s tests -t .
+```
+
 ## History
 
 Started as `colorID.py` (the polygon coloring script alone); renamed
-2026-09-07 when the Bad Elf script joined it.
+2026-09-07 when the Bad Elf script joined it. `canopy-toolbox/` added
+2026-09-11 — the first entry that is a folder rather than a single script.
