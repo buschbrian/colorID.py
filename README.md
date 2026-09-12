@@ -7,6 +7,7 @@ script is self-contained; there is no package to install.
 |---|---|---|
 | `assign_polygon_colors.py` | Assigns a `colorID` to polygons so no two adjacent polygons share a value (greedy graph coloring over a Polygon Neighbors table) — for cartography where touching parcels or zones need distinct fills. Set the two path variables at the top before running. | ArcGIS Pro's Python (`arcpy`) |
 | `add_badelf_fields_to_agol.py` | Adds the Bad Elf Flex (2025) GNSS metadata fields and coded-value domains to a hosted feature layer, so surveyed points keep correction type, geoid model, antenna height, and final heights. Idempotent — existing fields are skipped. | ArcGIS API for Python (`arcgis`) |
+| `sketch_layer_to_template_schema.py` | Rebuilds an ArcGIS Online Map Viewer sketch layer as a feature class carrying a production dataset's full schema — fields, domains, subtypes, GlobalIDs and attribute rules — reprojecting with an explicit datum transformation and loading with rules disabled. Set the paths at the top and run once with `DRY_RUN = True`. | ArcGIS Pro's Python (`arcpy`) |
 
 ## Environment
 
@@ -27,4 +28,5 @@ password never lands in shell history.
 ## History
 
 Started as `colorID.py` (the polygon coloring script alone); renamed
-2026-09-07 when the Bad Elf script joined it.
+2026-09-07 when the Bad Elf script joined it. The sketch layer script was
+added 2026-09-11.
